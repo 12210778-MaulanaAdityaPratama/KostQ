@@ -93,8 +93,8 @@ class Page extends CI_Controller {
 				// setingan default tanpa smtp
 				$this->load->library('email');
 
-				$this->email->from('mail@azmicolejr.com', 'Pesan Baru dari Website');
-				$this->email->to('azmi2793@gmail.com');
+				$this->email->from('derza123@gmail.com', 'Pesan Baru dari Website');
+				$this->email->to('okebang354@gmail.com');
 				$this->email->subject($subject);
 				$this->email->message($message);
 
@@ -105,7 +105,7 @@ class Page extends CI_Controller {
 		    }
 		    else
 		    {
-					$this->session->set_flashdata('message', '<div class="row"><div class="col-lg-12"><div class="alert alert-danger alert">Pesan Anda Gagal Terkirim, silahkan coba kembali</div></div></div>');
+					$this->session->set_flashdata('message', '<div class="row"><div class="col-lg-12"><div class="alert alert-success alert">Pesan Anda telah Terkirim, Terima Kasih</div></div></div>');
 					redirect(site_url('contact'));
 		    }
 			}

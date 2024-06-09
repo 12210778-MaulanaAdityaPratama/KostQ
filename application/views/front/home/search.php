@@ -1,7 +1,7 @@
 
 <div class="mt-7">
     <form class="mx-auto w-full sm:w-1/2 mb-5" action="<?= base_url('home/search') ?>">
-        <div class=" relative">
+        <div class=" relative"><br>
             <input class ="form-grup" type="text" placeholder=" Ayo Cari Kost anda dan alamat kost yang anda cari Disini...." name="fr"
                 class="form-input shadow-[0_0_4px_2px_rgb(31_45_61_/_10%)] bg-white rounded-full h-11 placeholder:tracking-wider"
                 id="autocompleteInput" />

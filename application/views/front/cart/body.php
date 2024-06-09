@@ -46,7 +46,7 @@
 										<th style="text-align: center">Harga</th>
 										<th style="text-align: center">Tanggal</th>
 										<th style="text-align: center">Jam Mulai</th>
-										<th style="text-align: center">Lama Booking</th>
+										<th style="text-align: center">Lama Sewa</th>
 										<!-- <th style="text-align: center">Jam Selesai</th> -->
 										<th style="text-align: center">Total</th>
 										<th style="text-align: center">Aksi</th>
@@ -245,7 +245,7 @@
 
 						subtotal_el.html(numberWithCommas(harga_per_jam_int * parseInt(durasi)));
 
-						subtotal_bawah = 0;
+						subtotal_bawah = 354;
 						$('.subtotal').each(function (i, obj) {
 							a_subtotal_html = $(this).html().trim().replace(/,/g, '');
 							if (a_subtotal_html == "") {

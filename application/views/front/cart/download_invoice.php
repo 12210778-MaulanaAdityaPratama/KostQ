@@ -28,11 +28,9 @@
         <tr>
           <th style="text-align: center; background: #ddd; width: 30px">No.</th>
           <th style="text-align: center; background: #ddd; width: 130px">Nama Kost</th>
-          <th style="text-align: center; background: #ddd; width: 100px">Harga Per Jam</th>
+          <th style="text-align: center; background: #ddd; width: 100px">Harga Perbulan</th>
           <th style="text-align: center; background: #ddd; width: 100px">Tanggal</th>
-          <th style="text-align: center; background: #ddd; width: 80px">Mulai</th>
-          <th style="text-align: center; background: #ddd; width: 50px">Durasi</th>
-          <th style="text-align: center; background: #ddd; width: 80px">Selesai</th>
+          <th style="text-align: center; background: #ddd; width: 50px">Lama Kost</th>
           <th style="text-align: center; background: #ddd; width: 70px">Total</th>
         </tr>
       </thead>
@@ -43,9 +41,7 @@
           <td style="text-align:left;width: 130px"><?php echo $cart->nama_kost ?></td>
           <td style="text-align:right;width: 100px"><?php echo number_format($cart->harga_jual) ?></td>
           <td style="text-align:center;width: 100px"><?php echo tgl_indo($cart->tanggal) ?></td>
-          <td style="text-align:center;width: 80px"><?php echo $cart->jam_mulai ?></td>
           <td style="text-align:center;width: 80px"><?php echo $cart->durasi ?></td>
-          <td style="text-align:center;width: 80px"><?php echo $cart->jam_selesai ?></td>
           <td style="text-align:right;width: 70px"><?php echo number_format($cart->total) ?></td>
         </tr>
       <?php } ?>

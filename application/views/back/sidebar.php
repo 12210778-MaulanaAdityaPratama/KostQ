@@ -28,7 +28,7 @@
                         <i class="fa fa-globe"></i> <span>Lihat Website</span>
                         </a>
                         </li>
-                        <php endif ?> --> 
+                        <php endif ?> -->
 
             <li <?php if ($this->uri->segment(2) == "transaksi" && $this->uri->segment(3) != "update_diskon") {
                 echo "class='active'";
@@ -41,7 +41,7 @@
                 echo "class='active'";
             } ?>>
                 <a href="<?php echo base_url('admin/laporan') ?>">
-                <i class='fa fa-newspaper-o'></i><span>Laporan</span>
+                    <i class='fa fa-newspaper-o'></i><span>Laporan</span>
                 </a>
             </li>
             <li <?php if ($this->uri->segment(2) == "kost") {
@@ -63,6 +63,13 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+            <li <?php if ($this->uri->segment(2) == "gambarkost") {
+                echo "class='active'";
+            } ?>>
+                <a href="<?php echo base_url('admin/gambarkost') ?>">
+                    <i class='fa fa-newspaper-o'></i><span>Gambar Kost</span>
+                </a>
             </li>
             <!-- <php if ($this->ion_auth->is_AdminKost()): ?>
             <li <php if($this->uri->segment(2) == "album"){echo "class='active'";} ?>>
@@ -202,9 +209,8 @@
             <li <?php if ($this->uri->segment(3) == "edit_user") {
                 echo "class='active'";
             } ?>>
-                <a
-                    href='<?php $user_id = $this->session->userdata('user_id');
-                    echo base_url('admin/auth/edit_user/' . $user_id . '') ?>'>
+                <a href='<?php $user_id = $this->session->userdata('user_id');
+                echo base_url('admin/auth/edit_user/' . $user_id . '') ?>'>
                     <i class='fa fa-edit'></i><span> Edit Akun </span>
                 </a>
             </li>

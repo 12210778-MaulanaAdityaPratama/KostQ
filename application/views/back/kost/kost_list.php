@@ -28,8 +28,8 @@
 										<thead>
 											<tr>
 												<th style="text-align: center">No.</th>
-												<th style="text-align: center">Nama Lapangan</th>
-                        <th style="text-align: center">Harga per Jam</th>
+												<th style="text-align: center">Nama Kost</th>
+                        <th style="text-align: center">Harga Perbulan</th>
                         <th style="text-align: center">Uploader</th>
                         <th style="text-align: center">Upload</th>
                         <th style="text-align: center">Updater</th>

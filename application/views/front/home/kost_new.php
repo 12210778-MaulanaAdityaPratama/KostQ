@@ -16,7 +16,10 @@
             <p class="card-text"><b>Rp. <?php echo number_format($kost->harga); ?>/bulan</b></p>
             <hr>
             <a href="<?php echo base_url('cart/buy/').$kost->id_kost ?>">
-              <button class="btn btn-sm btn-primary"><i class="fa fa-shopping-cart"></i>Detail Booking</button>
+              <button class="btn btn-sm btn-primary"><i class="fa fa-shopping-cart"></i> Booking Sekarang</button>
+            </a>
+            <a href="<?php echo base_url('home/detail_kost/').$kost->id_kost ?>">
+              <button class="btn btn-sm btn-primary"><i class="bi bi-info-square-fill"></i> Detail Kost</button>
             </a>
           </div>
         </div>

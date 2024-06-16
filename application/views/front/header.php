@@ -17,6 +17,7 @@
   <script src="<?php echo base_url() ?>assets/template/frontend/js/popper.min.js" rel="stylesheet"></script>
   <script src="<?php echo base_url() ?>assets/template/frontend/js/bootstrap.min.js" rel="stylesheet"></script>
   <script src="<?php echo base_url() ?>assets/template/frontend/js/moment.min.js" rel="stylesheet"></script>
+  
   <script>
     $(document).ready(function () {
       var autocompleteInput = $('#autocompleteInput');

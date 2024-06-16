@@ -76,4 +76,16 @@ class Home extends CI_Controller {
         header('Content-Type: application/json');
         echo json_encode($data);
     }
+
+    public function detail_kost($id)
+    {
+        $this->load->model('Kost_model');
+        $data = array(
+            'title' => 'Detail Kost',
+            //'gambar' => $this->m_home->gambar_barang($id),
+            'kost' => $this->Kost_model->detail_kost($id),
+            //'isi' => 'v_detail_Kost',
+        );
+        $this->load->view('front/home/detail_kost', $data);
+    }
 }

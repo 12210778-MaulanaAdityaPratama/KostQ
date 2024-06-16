@@ -21,7 +21,7 @@ class Gambarkost extends CI_Controller
         );
         $this->load->view('back/gambarkost/v_index', $data, FALSE);
     }
-    public function tambah($id_kost)
+    public function tambah($id)
     {
         $this->form_validation->set_rules(
             'ket',
@@ -41,34 +41,34 @@ class Gambarkost extends CI_Controller
                     'title' => 'Tambah gambar',
                     'tambah' => $this->kost_model->get_user_data(),
                     'error_upload' => $this->upload->display_errors(),
-                    'gambar' => $this->m_gambarkost->get_gambar($id_kost),
+                    'gambar' => $this->m_gambarkost->get_gambar($id),
                     //'isi' => 'gambarbarang/v_tambah',
-                    'kost' => $this->kost_model->ambil_kost($id_kost),
+                    'kost' => $this->m_gambarkost->get_user_data(),
                 );
-                $this->load->view('back/gambarkost/v_tambah', $data, FALSE);
+                $this->load->view('back/gambarkost/v_tambah', $data);
             } else {
                 $upload_data = array('uploads' => $this->upload->data());
                 $config['image_library'] = 'gd2';
                 $config['source_image'] = './assets/images/kost/' . $upload_data['uploads']['file_name'];
                 $this->load->library('image_lib', $config);
                 $data = array(
-                    'id_kost' => $id_kost,
+                    'id_kost' => $id,
                     'ket' => $this->input->post('ket'),
                     'gambar' => $upload_data['uploads']['file_name'],
                 );
                 $this->m_gambarkost->tambah($data);
                 $this->session->set_flashdata('pesan', 'Gambar Berhasil ditambahkan');
-                redirect('gambarkost/tambah/' . $id_kost);
+                redirect('gambarkost/tambah/' . $id);
             }
         }
 
         $data = array(
             'title' => 'tambah gambar',
-            'gambar' => $this->m_gambarkost->get_gambar($id_kost),
+            'gambar' => $this->m_gambarkost->get_gambar($id),
             //'isi' => 'gambarbarang/v_tambah',
-            'kost' => $this->kost_model->ambil_kost($id_kost),
+            'kost' => $this->m_gambarkost->get_user_data(),
         );
-        $this->load->view('back/gambarkost/v_tambah', $data, FALSE);
+        $this->load->view('back/gambarkost/v_tambah', $data);
     }
     public function delete($id_kost, $id_gambar)
     {

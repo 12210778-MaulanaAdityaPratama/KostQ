@@ -40,6 +40,14 @@ class Kost_model extends CI_Model
     $this->db->order_by('nama_kost', 'ASC');
     return $this->db->get($this->table)->result();
   }
+  public function get_data($id)
+    {
+        $this->db->select("*");
+        $this->db->from('kost');
+        $this->db->join('kategori', 'kategori.id_kategori = kost.id_kategori', 'left');
+        $this->db->where('id_kost', $id);
+        return $this->db->get()->row();
+    }
 
   public function detail_kost($id)
     {

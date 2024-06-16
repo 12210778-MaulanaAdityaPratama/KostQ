@@ -1,8 +1,8 @@
 <div class="col-md-12">
     <div class="card card-warning shadow-none">
         <div class="card-header">
-            <h3 class="card-title">Tambah Gambar barang |
-                <?= $kost->nama_kost ?>
+            <h3 class="card-title">Tambah Gambar|
+                <!-- <= $kost->nama_kost ?> -->
             </h3>
 
             <div class="card-tools">

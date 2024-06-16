@@ -1,4 +1,69 @@
-<?php $this->load->view('front/header'); ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KostQ |
+        <?= $title ?>
+    </title>
+    <link rel="website icon" type="png" href="<?= base_url('assets/logo/logo8.png') ?>">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="<?= base_url() ?>templates/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="<?= base_url() ?>templates/dist/css/adminlte.min.css">
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="<?= base_url() ?>templates/plugins/fontawesome-free/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="<?= base_url() ?>templates/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet"
+        href="<?= base_url() ?>templates/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>templates/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="<?= base_url() ?>templates/dist/css/adminlte.min.css">
+    <!--font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="<?= base_url() ?>templates/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- jQuery -->
+    <script src="<?= base_url() ?>templates/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="<?= base_url() ?>templates/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="<?= base_url() ?>templates/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url() ?>templates/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="<?= base_url() ?>templates/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="<?= base_url() ?>templates/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="<?= base_url() ?>templates/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="<?= base_url() ?>templates/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="<?= base_url() ?>templates/plugins/jszip/jszip.min.js"></script>
+    <script src="<?= base_url() ?>templates/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="<?= base_url() ?>templates/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="<?= base_url() ?>templates/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="<?= base_url() ?>templates/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="<?= base_url() ?>templates/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="<?= base_url() ?>templates/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="<?= base_url() ?>templates/dist/js/demo.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="<?= base_url() ?>templates/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <!-- jQuery 2 -->
+    <script src="<?= base_url() ?>templates/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="<?= base_url() ?>templates/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="<?= base_url() ?>templates/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="<?= base_url() ?>templates/dist/js/demo.js"></script>
+</head>
 <!-- Default box -->
 <div class="card card-solid">
     <div class="card-body">
@@ -9,13 +74,13 @@
                 </h3>
                 <div class="col-12">
                     <img src="<?= base_url('assets/images/kost/' . $kost->foto) ?>" class="product-image"
-                        alt="Product Image" height="100px" width="100px" >
+                        alt="Product Image" height="100px" width="100px">
                 </div>
                 <!-- <div class="col-12 product-image-thumbs">
                     <div class="product-image-thumb active"><img
                             src="<= base_url('assets/images/kost/' . $kost->foto) ?>" alt="Product Image">
                     </div> -->
-                    <!-- <php foreach ($gambar as $key => $value): ?>
+                <!-- <php foreach ($gambar as $key => $value): ?>
                         <div class="product-image-thumb"><img
                                 src="<= base_url('assets/gambarbarang/' . $value->gambar) ?>"></div>
                     <php endforeach; ?> -->
@@ -65,6 +130,9 @@
                     </div> -->
                 </div>
                 <?php echo form_close(); ?>
+                <a href="<?php echo base_url('')?>">
+              <button class="btn btn-sm btn-primary">Kembali</button>
+            </a>
 
 
                 <div class="mt-4 product-share">
@@ -107,3 +175,5 @@
         });
     });
 </script>
+
+</html>

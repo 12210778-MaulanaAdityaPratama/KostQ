@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 18, 2024 at 08:46 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.1.25
+-- Host: localhost:3306
+-- Generation Time: Jun 18, 2024 at 11:30 PM
+-- Server version: 8.0.30
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,15 +28,15 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `album` (
-  `id_album` int(11) NOT NULL,
+  `id_album` int NOT NULL,
   `nama_album` char(50) NOT NULL,
   `slug_album` char(50) NOT NULL,
   `foto` text NOT NULL,
   `created_by` char(20) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` char(20) DEFAULT NULL,
-  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `modified_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `album`
@@ -58,12 +58,12 @@ INSERT INTO `album` (`id_album`, `nama_album`, `slug_album`, `foto`, `created_by
 --
 
 CREATE TABLE `bank` (
-  `id_bank` int(11) NOT NULL,
+  `id_bank` int NOT NULL,
   `nama_bank` varchar(100) NOT NULL,
   `atas_nama` varchar(100) NOT NULL,
   `norek` varchar(100) NOT NULL,
   `logo` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bank`
@@ -83,7 +83,7 @@ INSERT INTO `bank` (`id_bank`, `nama_bank`, `atas_nama`, `norek`, `logo`) VALUES
 --
 
 CREATE TABLE `company` (
-  `id_company` int(11) NOT NULL,
+  `id_company` int NOT NULL,
   `company_name` varchar(100) NOT NULL,
   `company_desc` text NOT NULL,
   `company_address` text NOT NULL,
@@ -94,11 +94,11 @@ CREATE TABLE `company` (
   `company_email` char(30) NOT NULL,
   `foto` text NOT NULL,
   `foto_type` char(10) NOT NULL,
-  `created` datetime NOT NULL DEFAULT current_timestamp(),
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` datetime DEFAULT NULL,
   `created_by` char(50) NOT NULL,
   `modified_by` char(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `company`
@@ -114,9 +114,9 @@ INSERT INTO `company` (`id_company`, `company_name`, `company_desc`, `company_ad
 --
 
 CREATE TABLE `diskon` (
-  `id` int(11) NOT NULL,
-  `harga` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `id` int NOT NULL,
+  `harga` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `diskon`
@@ -132,16 +132,16 @@ INSERT INTO `diskon` (`id`, `harga`) VALUES
 --
 
 CREATE TABLE `foto` (
-  `id_foto` int(11) NOT NULL,
-  `album_id` int(11) NOT NULL,
+  `id_foto` int NOT NULL,
+  `album_id` int NOT NULL,
   `nama_foto` char(100) NOT NULL,
   `slug_foto` char(100) NOT NULL,
   `foto` text NOT NULL,
   `created_by` char(20) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` char(20) NOT NULL,
-  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `modified_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `foto`
@@ -165,10 +165,10 @@ INSERT INTO `foto` (`id_foto`, `album_id`, `nama_foto`, `slug_foto`, `foto`, `cr
 --
 
 CREATE TABLE `jam` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `jam` varchar(50) NOT NULL,
-  `is_available` tinyint(4) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `is_available` tinyint NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `jam`
@@ -202,14 +202,14 @@ INSERT INTO `jam` (`id`, `jam`, `is_available`) VALUES
 --
 
 CREATE TABLE `kategori` (
-  `id_kategori` int(11) NOT NULL,
+  `id_kategori` int NOT NULL,
   `nama_kategori` varchar(20) NOT NULL,
   `slug_kat` varchar(20) NOT NULL,
   `created_by` char(50) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` char(50) NOT NULL,
-  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `modified_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kategori`
@@ -227,14 +227,14 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `slug_kat`, `created_by`
 --
 
 CREATE TABLE `kontak` (
-  `id_kontak` int(11) NOT NULL,
+  `id_kontak` int NOT NULL,
   `nama_kontak` char(50) NOT NULL,
   `nohp` char(50) NOT NULL,
   `created_by` char(50) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` char(50) NOT NULL,
-  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `modified_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kontak`
@@ -250,41 +250,50 @@ INSERT INTO `kontak` (`id_kontak`, `nama_kontak`, `nohp`, `created_by`, `created
 --
 
 CREATE TABLE `kost` (
-  `id_kost` int(11) NOT NULL,
+  `id_kost` int NOT NULL,
   `nama_kost` varchar(100) NOT NULL,
-  `harga` int(11) NOT NULL,
+  `harga` int NOT NULL,
   `nama_perusahaan` varchar(255) DEFAULT NULL,
   `no_hp` varchar(255) DEFAULT NULL,
   `lokasi` varchar(255) DEFAULT NULL,
   `provinsi` varchar(255) DEFAULT NULL,
   `kota` varchar(255) DEFAULT NULL,
   `sisa_kost` varchar(255) DEFAULT NULL,
-  `deskripsi` text DEFAULT NULL,
+  `deskripsi` text,
   `kategori` varchar(255) DEFAULT NULL,
   `foto` text NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` varchar(50) NOT NULL,
-  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `modified_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kost`
 --
 
 INSERT INTO `kost` (`id_kost`, `nama_kost`, `harga`, `nama_perusahaan`, `no_hp`, `lokasi`, `provinsi`, `kota`, `sisa_kost`, `deskripsi`, `kategori`, `foto`, `created_by`, `created_at`, `modified_by`, `modified_at`) VALUES
-(27, 'Kost Bu Wiwi', 650000, 'Cv. Kost Sejahtera', '081234567890', 'Jalan Petani, Pontianak 78112, Indonesia', NULL, NULL, '2', 'Khusu cewek Yang mau ngekost lokasi strategis aman nyaman,<br>\r\n fasilitas lengkap, kasur, kipas angin, lemari dan wc di dalam, air pdam , listrik dan wifi di tanggung bapak kost ', '5', 'kost-bu-wiwi20240601162534.gif', 'Dido Khoirulrijal', '2024-05-14 22:12:20', 'Dido Khoirulrijal', '2024-06-01 16:25:34'),
-(28, 'KOST PRIA SOF', 1500000, 'PT.  Info KostQ', '6287872570130', ' Komplek.Bumi sepakat permai No.10 A, Bansir Darat, Kec. Pontianak Tenggara, Kota Pontianak, Kalimantan Barat 78124', NULL, NULL, '5', 'BULANAN,MINGGUAN,HARIAN <br>\r\n????BULANAN = 1.500.000? <br>\r\n????MINGGUAN= 500.000?<br>\r\n????HARIAN=200.000?<br>\r\n(Free Listrik, Free WiFi, Free Air, Free Biaya Kebersihan, dll)<br><br>\r\n\r\n????Lokasi Super Strategis = Komplek.Bumi sepakat permai No.10 A, Bansir Darat, Kec. Pontianak Tenggara, Kota Pontianak, Kalimantan Barat 78124<br>\r\n\r\nNo telpon : 6287872570130<br>\r\n\r\nSekeliling Banyak Sekali Kuliner, Indomaret/Alfamart, Laundry, Apotek, ATM, Counter HP, dll<br>\r\n\r\nFasilitas Super Lengkap <br>\r\nFASILITAS LENGKAP<br>\r\n•?AC<br>\r\n•?Tv Smart<br>\r\n•?Spring Bed 160 x 200<br>\r\n•?Lemari Pakaian<br>\r\n•?Meja & Kursi<br>\r\n•?KamarMandi Dalam Water Heater<br>\r\n•?Dapur Pribadi* (Mini Kitchen)<br>\r\n•?Coridor Di lengkapi CCTV*<br>\r\n•?Parkiran Luas Di lengkapi CCTV<br>\r\ndll...<br><br>\r\n\r\nJika Butuh Kendaraan, Kami Juga Menyediakan Langsung RENTAL MOBIL & MOTOR (Satu Kelolaan Dengan Kost)<br>', '4', 'kost-pria-sof20240601130156.gif', 'Dido Khoirulrijal', '2024-05-15 08:09:17', 'Dido Khoirulrijal', '2024-06-01 13:01:56'),
-(29, 'GRIYA LADIES', 1000000, 'PT.  Info KostQ', '6289693948618', 'Jalan Petani, Pontianak 78112, Indonesia', NULL, NULL, '3', 'Menerima kost harian dan bulanan<br>\nKHUSUS MAHASISWI<br>\n1JT / BLN<br>\nsyarat ketentuan berlaku<br>\n\nSpesifikasi:<br>\n- lokasi strategis<br>\n- listrik voucher<br>\n- kamar 3x4 tempat tidur + bantal<br>\n- lemari pakaian meja rias<br>\n- kamar mandi dalam dgn shower dan kloset duduk<br>\n\nInfo hubungi: 089693948618<br>\nac<br>\nfree wifi<br>\nfree air pdam<br>', '5', 'griya-ladies20240515083444.gif', 'Dido Khoirulrijal', '2024-05-15 08:34:44', 'Dido Khoirulrijal', '2024-05-17 06:46:23'),
-(30, '-SURYA KOST-', 800000, 'cv. kost jak', '6282153178544', 'Jl. P. Diponegoro  Gg. Proklamasi  No.46B,46C', NULL, NULL, '4', 'Khusus Putra <br>\r\n(Bisa perhari,minggu,dan bulanan) <br>\r\n\r\nFasilitas :  <br>\r\n- ac  <br>\r\n- wifi <br>\r\n- Tv <br>\r\n- wastafel dan cermin <br>\r\n- kamar mandi dalam (Sudah shower) <br>\r\n- air pdam <br>\r\n- kasur tebal (bantal 2 dan selimut tebal) <br>\r\n- lemari <br>\r\n- kursi <br>\r\n- cctv <br>\r\n\r\n\"Catatan : Listrik sendiri\" <br>\r\n\r\nAgar lebih jelas bisa datang langsung ditempat,atau hubungi <br>\r\n\r\nResepsionis <br>\r\n hub wa : 082153178544 <br>', '4', 'surya-kost20240601105942.gif', 'Dido Khoirulrijal', '2024-05-15 08:44:24', 'Dido Khoirulrijal', '2024-06-01 10:59:42'),
-(31, 'Kost Rafa', 1500000, 'PT.  info KostQ', '6282194061863', 'Blok S, Jl. Sepakat II  Bansir Darat, Kec. Pontianak Tenggara, Kota Pontianak, ', NULL, NULL, '3', 'Terima Kost Putri<br>\r\n\r\nAman dan nyaman, semua dapat akses 24jam, Full furnished, kebersihan terjaga.<br>\r\n\r\nKamar full AC 1PK, Tv, Wifi lancar, Kamar mandi dalam, Kulkas, Dapur Mini dalam kamar, Parkiran Mobil/Motor luas dan aman.<br>\r\n\r\nHarga 1,500.000 perbulan<br>\r\n\r\nLokasi : Blok S, Jl. Sepakat II  Bansir Darat, Kec. Pontianak Tenggara, Kota Pontianak, Kalimantan Barat 78112<br>\r\n\r\nChat Whatsapp : 082194061863 untuk info lebih lanjut.<br>', '5', 'kost-rafa20240601112216.gif', 'Dido Khoirulrijal', '2024-05-15 08:50:59', 'Dido Khoirulrijal', '2024-06-01 11:22:16'),
-(32, 'Kost Murah area Paris', 700000, 'PT.  Info KostQ', '6289674471020', ' jl. Paria2 KOMP. Permata griya no 2 A Kamar kost lantai 1.', NULL, NULL, '2', 'khusus Putra <br>\r\n\r\nKost strategis <br>\r\nAlamat : jl. Paria2 KOMP. Permata griya no 2 A<br>\r\nKamar kost lantai 1.<br>\r\n\r\nFasilitas kost:<br>\r\n- free wifi<br>\r\n- kasur + bantal dan guling <br>\r\n- lemari<br>\r\n- kipas angin<br>\r\n- ember dan gayung<br>\r\n- tongsampah Dalam kamar.<br>\r\n- dapur bersama<br>\r\n- free PDAM<br>\r\n- tempat parkir luas<br>\r\n- kamar mandi bersama ( closet jongkok 1 dan closet duduk + sower <br>\r\n\r\nGambar sesuai asli.<br>\r\nLuaskamar 2x4<br>\r\nHarga : 700.000 per bulan .<br>\r\nHub: 089674471020<br>', '4', 'kost-murah-area-paris20240601140325.gif', 'Dido Khoirulrijal', '2024-05-15 08:58:16', 'Dido Khoirulrijal', '2024-06-01 14:03:25'),
-(33, 'Kost Aqila', 600000, 'PT.  Info KostQ', '6285748934896', 'Jl. Sepakat I Blk. F No.F11, Bansir Laut, Kec. Pontianak Tenggara, Kota Pontianak, Kalimantan Barat 78124', NULL, NULL, '3', '- Yang kamu dapatkan di Kos Aqila<br>\r\nSpesifikasi tipe kamar<br>\r\n- 3 x 3 meter<br>\r\n- Suadh termasuk listrik<br>\r\nFasilitas kamar<br>\r\n- Kasur<br>\r\n- Lemari<br>\r\n- Bantal<br>\r\n- Bantal Guling<br>\r\n- Belum termasuk kipas<br>\r\nFasilitas kamar mandi<br>\r\n- Kamar mandi luar<br>\r\n- Loset jongkok<br>\r\n- Gayung<br>\r\nFasilitas dapur<br>\r\n- Belum termasuk<br>\r\nPraturan kost<br>\r\n- Tamu wajib lapor<br>\r\n- Selebihnya bebas<br>', '5', 'kost-aqila20240601145856.gif', 'Dido Khoirulrijal', '2024-05-16 09:05:34', 'Dido Khoirulrijal', '2024-06-01 14:58:56'),
-(34, 'KOST ASRI', 1000000, 'PT.  Info KostQ', '6285748934896', 'Islamic Village jl.zaitun 1 blok B1 No. 1 Kel. Kelapa dua -Kecamatan Kelapa dua', NULL, NULL, '5', 'Spesifikasi tipe kamar<br>\r\n- 3 x 3 meter<br>\r\n- Suadh termasuk listrik<br>\r\n- Sudah termasuk wifi<br>\r\n- Sudah termasuk air<br>\r\nFasilitas kamar<br>\r\n- Kasur<br>\r\n- Lemari<br>\r\n- Bantal<br>\r\n- Bantal Guling<br>\r\n- ac<br>\r\nFasilitas kamar mandi<br>\r\n- Kamar mandi dalam<br>\r\nFasilitas dapur<br>\r\n- Belum termasuk<br>\r\nPraturan kost<br>\r\n- Tamu wajib lapor<br>\r\n- Selebihnya bebas<br>', '4', 'kost-asri20240601151133.gif', 'Dido Khoirulrijal', '2024-05-16 09:10:53', 'Dido Khoirulrijal', '2024-06-01 15:11:33'),
-(35, 'KOST Anona', 800000, 'PT.  Info KostQ', '6285748934896', 'l. Purnama 2 Gg. Nurul Hasanah No. 26A, Kota Baru, Kec. Pontianak Sel., Kota Pontianak, Kalimantan Barat 78115', NULL, NULL, '2', 'Spesifikasi tipe kamar<br>\r\n- 4x4 meter<br>\r\n- token listrik masing 2<br>\r\n- Sudah termasuk wifi<br>\r\n- Sudah termasuk air<br>\r\nFasilitas kamar<br>\r\n- Kasur<br>\r\n- Lemari<br>\r\n- Bantal<br>\r\n- Bantal Guling<br>\r\n- Kipas angin<br>\r\nFasilitas kamar mandi<br>\r\n- Kamar mandi dalam<br>\r\nFasilitas dapur<br>\r\n- Belum termasuk<br>\r\nPraturan kost<br>\r\n- Tamu wajib lapor<br>\r\n- Selebihnya bebas<br>', '5', 'kost-anona20240601150414.gif', 'Dido Khoirulrijal', '2024-05-16 09:13:30', 'Dido Khoirulrijal', '2024-06-01 15:04:14'),
-(36, 'KOST Borneo', 700000, 'PT.  Info KostQ', '85748934896', 'Jl Sukses No !3 Borneo', NULL, NULL, '4', 'Spesifikasi tipe kamar<br>\r\n- 4x4 meter<br>\r\n- token listrik masing 2<br>\r\n- Sudah termasuk wifi<br>\r\n- Sudah termasuk air<br>\r\nFasilitas kamar<br>\r\n- Kasur<br>\r\n- Lemari<br>\r\n- Bantal<br>\r\n- Bantal Guling<br>\r\n- ac<br>\r\nFasilitas kamar mandi<br>\r\n- Kamar mandi dalam<br>\r\nFasilitas dapur<br>\r\n- Kulkas<br>\r\n- Mwsin cuci<br>\r\nPraturan kost<br>\r\n- Tamu wajib lapor<br>\r\n- Selebihnya bebas<br>', '4', 'kost-putra-uui20240601152416.gif', 'Dido Khoirulrijal', '2024-05-16 09:16:07', 'Dido Khoirulrijal', '2024-06-07 20:33:16'),
-(37, 'KOST putri abel', 450000, 'PT.  Info KostQ', '6285748934896', 'jl tebo utara gang kramat no 07 RT 03 RW 01malang', NULL, NULL, '4', 'Spesifikasi tipe kamar<br>\r\n- 3x3 meter<br>\r\n- Sudah termasuk listrik<br>\r\n- Sudah termasuk wifi<br>\r\n- Sudah termasuk air<br>\r\nFasilitas kamar<br>\r\n- Kasur<br>\r\n- Lemari<br>\r\n- Bantal<br>\r\n- Bantal Guling<br>\r\n- -\r\nFasilitas kamar mandi<br>\r\n- Kamar mandi luar<br>\r\nFasilitas dapur<br>\r\n- Kulkas<br>\r\nPraturan kost<br>\r\n- Tamu wajib lapor<br>\r\n- Selebihnya bebas<br>', '5', 'kost-putri-abel20240601152908.gif', 'Dido Khoirulrijal', '2024-05-16 09:18:34', 'Dido Khoirulrijal', '2024-06-01 15:29:08'),
-(39, 'KOST FITRIA', 900000, 'KOST FITRIA', '081345064242', 'Jl. Sepakat II Komp. Mutiara Villa Sepakat', '12', '364', '4', 'KOST FITRIA (Khusus Putri)<br>\r\nJl. Sepakat II Komp. Mutiara Villa Sepakat<br>\r\nMasih tersedia kamar kost dengan kamar mandi di dalam,<br>\r\nFasilitas:<br>\r\n1. Lokasi Strategis Dekat Dengan Untan, UMP, Polnep, Mall Ayani, RS Dan Di Tengah Kota<br>\r\n2. Kamar Mandi Dalam<br>\r\n3. Wifi<br>\r\n4. PDAM<br>\r\n5. Parkiran Luas dan Berpagar<br>\r\n6. CCTV 24 jam<br>\r\n7. Dapur Umum<br>\r\n8. Tempat Tidur, Bantal & Lemari<br>\r\n9. AC / Kipas Angin<br>\r\n10. Jemuran Baju<br>\r\n\r\nMenerima Sewa Bulanan 900K/ Bulan<br>\r\nInfo Lebih Lengkap Hubungi:<br>\r\n081345064242 ( WA)', '5', 'kost-fitria20240609082816.gif', 'Dido Khoirulrijal', '2024-06-09 08:28:16', '', NULL);
+(79, 'udin', 22, 'nih', '23232', 'asdas', NULL, NULL, '2', 'asdas', '4', '', 'Dido Khoirulrijal', '2024-06-19 04:03:43', 'Dido Khoirulrijal', '2024-06-19 06:22:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kost_images`
+--
+
+CREATE TABLE `kost_images` (
+  `id` int NOT NULL,
+  `id_kost` int DEFAULT NULL,
+  `foto` text CHARACTER SET latin1 COLLATE latin1_swedish_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `kost_images`
+--
+
+INSERT INTO `kost_images` (`id`, `id_kost`, `foto`) VALUES
+(56, 79, '83357720240619041049_000.png'),
+(69, 79, '168114715220240619062233_000.png');
 
 -- --------------------------------------------------------
 
@@ -293,10 +302,10 @@ INSERT INTO `kost` (`id_kost`, `nama_kost`, `harga`, `nama_perusahaan`, `no_hp`,
 --
 
 CREATE TABLE `kota` (
-  `id_kota` int(11) NOT NULL,
-  `provinsi_id` int(11) NOT NULL,
+  `id_kota` int NOT NULL,
+  `provinsi_id` int NOT NULL,
   `nama_kota` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kota`
@@ -1313,11 +1322,11 @@ INSERT INTO `kota` (`id_kota`, `provinsi_id`, `nama_kota`) VALUES
 --
 
 CREATE TABLE `login_attempts` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `ip_address` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `login` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `time` int(10) UNSIGNED DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `id` int UNSIGNED NOT NULL,
+  `ip_address` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `login` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `time` int UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1326,12 +1335,12 @@ CREATE TABLE `login_attempts` (
 --
 
 CREATE TABLE `page` (
-  `id_page` int(11) NOT NULL,
+  `id_page` int NOT NULL,
   `judul_page` varchar(50) NOT NULL,
   `judul_seo` varchar(50) NOT NULL,
   `isi_page` text NOT NULL,
   `gambar` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `page`
@@ -1351,20 +1360,20 @@ INSERT INTO `page` (`id_page`, `judul_page`, `judul_seo`, `isi_page`, `gambar`) 
 --
 
 CREATE TABLE `promosi` (
-  `id_promosi` int(11) NOT NULL,
+  `id_promosi` int NOT NULL,
   `nama_promosi` varchar(100) NOT NULL,
   `slug_promosi` varchar(100) DEFAULT NULL,
   `harga` varchar(255) DEFAULT NULL,
-  `link` text DEFAULT NULL,
-  `deskripsi` text DEFAULT NULL,
-  `kategori` int(11) DEFAULT NULL,
-  `foto` text DEFAULT NULL,
+  `link` text,
+  `deskripsi` text,
+  `kategori` int DEFAULT NULL,
+  `foto` text,
   `foto_type` char(10) DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_by` char(50) NOT NULL,
-  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `modified_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `modified_by` char(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `promosi`
@@ -1381,9 +1390,9 @@ INSERT INTO `promosi` (`id_promosi`, `nama_promosi`, `slug_promosi`, `harga`, `l
 --
 
 CREATE TABLE `provinsi` (
-  `id_provinsi` int(11) NOT NULL,
+  `id_provinsi` int NOT NULL,
   `nama_provinsi` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `provinsi`
@@ -1466,18 +1475,18 @@ INSERT INTO `provinsi` (`id_provinsi`, `nama_provinsi`) VALUES
 --
 
 CREATE TABLE `slider` (
-  `id_slider` int(11) NOT NULL,
-  `no_urut` int(11) NOT NULL,
+  `id_slider` int NOT NULL,
+  `no_urut` int NOT NULL,
   `nama_slider` varchar(100) NOT NULL,
   `link` varchar(100) NOT NULL,
   `foto` text NOT NULL,
   `foto_type` char(10) NOT NULL,
-  `foto_size` int(11) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `foto_size` int NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_by` char(50) NOT NULL,
-  `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `modified_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `modified_by` char(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `slider`
@@ -1496,11 +1505,11 @@ INSERT INTO `slider` (`id_slider`, `no_urut`, `nama_slider`, `link`, `foto`, `fo
 --
 
 CREATE TABLE `subscriber` (
-  `id_subscriber` int(11) NOT NULL,
+  `id_subscriber` int NOT NULL,
   `email` char(20) NOT NULL,
-  `status` int(11) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `status` int NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1509,10 +1518,10 @@ CREATE TABLE `subscriber` (
 --
 
 CREATE TABLE `tb_gambar` (
-  `id_gambar` int(9) NOT NULL,
-  `id_kost` int(9) DEFAULT NULL,
-  `ket` varchar(225) DEFAULT NULL,
-  `gambar` varchar(225) DEFAULT NULL
+  `id_gambar` int NOT NULL,
+  `id_kost` int DEFAULT NULL,
+  `ket` varchar(225) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `gambar` varchar(225) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -1522,18 +1531,18 @@ CREATE TABLE `tb_gambar` (
 --
 
 CREATE TABLE `transaksi` (
-  `id_trans` int(11) NOT NULL,
+  `id_trans` int NOT NULL,
   `id_invoice` char(15) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `subtotal` int(11) NOT NULL,
-  `diskon` int(11) NOT NULL,
-  `grand_total` int(11) NOT NULL,
+  `user_id` int NOT NULL,
+  `subtotal` int NOT NULL,
+  `diskon` int NOT NULL,
+  `grand_total` int NOT NULL,
   `deadline` datetime NOT NULL,
   `catatan` text NOT NULL,
-  `status` int(11) NOT NULL,
+  `status` int NOT NULL,
   `created_date` date NOT NULL,
   `created_time` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transaksi`
@@ -1575,34 +1584,18 @@ INSERT INTO `transaksi` (`id_trans`, `id_invoice`, `user_id`, `subtotal`, `disko
 --
 
 CREATE TABLE `transaksi_detail` (
-  `id_transdet` int(11) NOT NULL,
-  `trans_id` int(11) NOT NULL,
-  `kost_id` int(11) NOT NULL,
+  `id_transdet` int NOT NULL,
+  `trans_id` int NOT NULL,
+  `kost_id` int NOT NULL,
   `tanggal` date NOT NULL,
   `jam_mulai` time NOT NULL,
-  `durasi` int(11) NOT NULL,
+  `durasi` int NOT NULL,
   `jam_selesai` time NOT NULL,
-  `kode` int(9) DEFAULT NULL,
-  `harga_jual` int(11) NOT NULL,
-  `total` int(11) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `transaksi_detail`
---
-
-INSERT INTO `transaksi_detail` (`id_transdet`, `trans_id`, `kost_id`, `tanggal`, `jam_mulai`, `durasi`, `jam_selesai`, `kode`, `harga_jual`, `total`, `created_at`) VALUES
-(47, 17, 29, '2024-05-24', '23:00:00', 3, '26:00:00', NULL, 1000000, 3000000, '2024-05-17 09:26:34'),
-(56, 19, 30, '2024-06-07', '06:00:00', 1, '07:00:00', NULL, 800000, 800000, '2024-06-06 15:48:31'),
-(58, 21, 30, '0000-00-00', '00:00:00', 0, '00:00:00', NULL, 800000, 800000, '2024-06-06 16:13:01'),
-(60, 20, 29, '2024-06-07', '07:00:00', 1, '08:00:00', NULL, 1000000, 1000000, '2024-06-07 21:31:34'),
-(61, 22, 27, '2024-06-11', '06:00:00', 1, '07:00:00', NULL, 650000, 650000, '2024-06-07 22:11:37'),
-(62, 23, 30, '2024-06-08', '22:00:00', 1, '23:00:00', 354, 800000, 800000, '2024-06-07 23:48:23'),
-(69, 24, 33, '2024-06-11', '09:00:00', 5, '14:00:00', 354, 600000, 3000000, '2024-06-10 10:30:14'),
-(70, 25, 33, '2024-06-11', '07:00:00', 3, '10:00:00', 354, 600000, 1800000, '2024-06-10 10:34:22'),
-(73, 26, 30, '2024-06-18', '21:00:00', 1, '22:00:00', 354, 800000, 800000, '2024-06-18 05:44:34'),
-(75, 27, 30, '0000-00-00', '00:00:00', 0, '00:00:00', NULL, 800000, 800000, '2024-06-18 12:02:12');
+  `kode` int DEFAULT NULL,
+  `harga_jual` int NOT NULL,
+  `total` int NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1611,29 +1604,29 @@ INSERT INTO `transaksi_detail` (`id_transdet`, `trans_id`, `kost_id`, `tanggal`,
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `username` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `phone` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `provinsi` int(11) DEFAULT NULL,
-  `kota` int(11) DEFAULT NULL,
-  `address` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `usertype` int(11) NOT NULL,
-  `active` tinyint(3) UNSIGNED DEFAULT NULL,
-  `photo` text CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `photo_type` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `ip_address` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `salt` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `activation_code` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `forgotten_password_code` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `forgotten_password_time` int(10) UNSIGNED DEFAULT NULL,
-  `remember_code` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `last_login` int(11) DEFAULT NULL,
-  `created_on` int(11) NOT NULL,
-  `modified` datetime DEFAULT NULL ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `id` int NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `username` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `phone` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `provinsi` int DEFAULT NULL,
+  `kota` int DEFAULT NULL,
+  `address` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `usertype` int NOT NULL,
+  `active` tinyint UNSIGNED DEFAULT NULL,
+  `photo` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci,
+  `photo_type` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `ip_address` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `salt` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `activation_code` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `forgotten_password_code` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `forgotten_password_time` int UNSIGNED DEFAULT NULL,
+  `remember_code` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `last_login` int DEFAULT NULL,
+  `created_on` int NOT NULL,
+  `modified` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -1645,7 +1638,7 @@ INSERT INTO `users` (`id`, `name`, `username`, `password`, `email`, `phone`, `pr
 (3, 'Batistuta', 'userpelanggan', '$2y$08$TWMdtdacqPE5yEz9n1LwFuhEVmiDTTsupl12M45tCQihzF1tu2N/6', 'userpelanggan@gmail.com', '0812412414', 33, 327, 'Jl. Skdlajsdlasjkdl', 4, 1, NULL, NULL, '127.0.0.1', NULL, NULL, NULL, NULL, NULL, 1675092041, 1528634033, '2023-01-30 22:20:41'),
 (4, 'User Premium', 'userpremium', '$2y$08$Wv3MA.DnwTNzBeF62o9neuSXeVdIA/bjlxOzSxtD6DtgStEBn//s.', 'userpremium@gmail.com', '0812412412', 3, 106, 'kaljdklasjdkl', 3, 1, NULL, NULL, '::1', NULL, NULL, NULL, NULL, NULL, 1621252638, 1531807819, '2021-05-17 18:57:18'),
 (5, 'derza', 'derza', '$2y$08$N7ozSVK16uSZAc25T2T9tetfaa0bs4CfjQxXexkfACBFIQJuy8v6m', 'derza123@gmail.com', '08123456789', 12, 365, 'jnnojol', 4, 1, NULL, NULL, '::1', NULL, NULL, NULL, NULL, NULL, 1715419326, 1715345107, '2024-05-11 16:22:06'),
-(6, 'Dido Khoirulrijal', 'Dido Khoirulrijal', '$2y$08$B/MGsCPU0KMqf8/Mlpo4WemHmSpiVTsEOFFRswZ5NjBlHsF9QYUqG', 'dido123@gmail.com', '081234567890', NULL, NULL, 'gahgcihwijchwhcwjcnowhw', 1, 1, 'dido-khoirulrijal20240511164052', '.jpg', '::1', NULL, NULL, NULL, NULL, NULL, 1718690689, 1715420452, '2024-06-18 13:04:49'),
+(6, 'Dido Khoirulrijal', 'Dido Khoirulrijal', '$2y$08$B/MGsCPU0KMqf8/Mlpo4WemHmSpiVTsEOFFRswZ5NjBlHsF9QYUqG', 'dido123@gmail.com', '081234567890', NULL, NULL, 'gahgcihwijchwhcwjcnowhw', 1, 1, 'dido-khoirulrijal20240511164052', '.jpg', '::1', NULL, NULL, NULL, NULL, 'RYmswOLdv3Rc5SVxHQojM.', 1718752168, 1715420452, '2024-06-19 06:09:28'),
 (7, 'siti ', 'siti', '$2y$08$FA/xt1MSvf5YvvqxQqjRiew7UhM06Pw59.ED1sdbM8ZCWgm6AdTAW', 'siti123@gmail.com', '081234567890', NULL, NULL, 'fewfewfw', 2, 1, 'siti20240511164956', '.png', '::1', NULL, NULL, '8fl0UPiFKfQZC.iz5AFvJee7a7119b90a6e53737', 1716780361, NULL, 1717991240, 1715420996, '2024-06-10 10:47:20'),
 (8, 'derza1', 'derza1', '$2y$08$vwOopGqu08brCSlKjs9i8.7FhxU6jXNiRG3UpGkpHl24wt3qS7UA2', 'derza12@gmail.com', '081234567890', 17, 48, 'y8giyhbiuhoij', 3, 1, NULL, NULL, '::1', NULL, NULL, NULL, NULL, NULL, 1718685086, 1715656961, '2024-06-18 11:31:26'),
 (9, 'teguh', 'teguh', '$2y$08$uZjAOIZbvDO0gbJTYSZNL.1rPJ5W4e9Fd2ehnUwbH3IYWE0BqEVnC', 'teguh123@gmail.com', '081234567890', NULL, NULL, 'jhckjckjcsdkjwhvldhvjjndkjjncwkjjnvkjw', 4, 1, NULL, NULL, '::1', NULL, NULL, NULL, NULL, NULL, 1717235143, 1717197542, '2024-06-01 16:45:43');
@@ -1657,9 +1650,9 @@ INSERT INTO `users` (`id`, `name`, `username`, `password`, `email`, `phone`, `pr
 --
 
 CREATE TABLE `users_group` (
-  `id_group` int(11) NOT NULL,
+  `id_group` int NOT NULL,
   `name_group` char(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users_group`
@@ -1729,6 +1722,13 @@ ALTER TABLE `kontak`
 --
 ALTER TABLE `kost`
   ADD PRIMARY KEY (`id_kost`);
+
+--
+-- Indexes for table `kost_images`
+--
+ALTER TABLE `kost_images`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_kost_images_kost` (`id_kost`);
 
 --
 -- Indexes for table `login_attempts`
@@ -1801,109 +1801,115 @@ ALTER TABLE `users_group`
 -- AUTO_INCREMENT for table `album`
 --
 ALTER TABLE `album`
-  MODIFY `id_album` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_album` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `bank`
 --
 ALTER TABLE `bank`
-  MODIFY `id_bank` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_bank` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `id_company` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_company` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `foto`
 --
 ALTER TABLE `foto`
-  MODIFY `id_foto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_foto` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `jam`
 --
 ALTER TABLE `jam`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_kategori` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `kontak`
 --
 ALTER TABLE `kontak`
-  MODIFY `id_kontak` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_kontak` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `kost`
 --
 ALTER TABLE `kost`
-  MODIFY `id_kost` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id_kost` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+
+--
+-- AUTO_INCREMENT for table `kost_images`
+--
+ALTER TABLE `kost_images`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `page`
 --
 ALTER TABLE `page`
-  MODIFY `id_page` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_page` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `promosi`
 --
 ALTER TABLE `promosi`
-  MODIFY `id_promosi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_promosi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `slider`
 --
 ALTER TABLE `slider`
-  MODIFY `id_slider` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_slider` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `subscriber`
 --
 ALTER TABLE `subscriber`
-  MODIFY `id_subscriber` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_subscriber` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tb_gambar`
 --
 ALTER TABLE `tb_gambar`
-  MODIFY `id_gambar` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_gambar` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_trans` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_trans` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `transaksi_detail`
 --
 ALTER TABLE `transaksi_detail`
-  MODIFY `id_transdet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id_transdet` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users_group`
 --
 ALTER TABLE `users_group`
-  MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_group` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -1914,6 +1920,12 @@ ALTER TABLE `users_group`
 --
 ALTER TABLE `foto`
   ADD CONSTRAINT `foto_FK` FOREIGN KEY (`album_id`) REFERENCES `album` (`id_album`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `kost_images`
+--
+ALTER TABLE `kost_images`
+  ADD CONSTRAINT `fk_kost_images_kost` FOREIGN KEY (`id_kost`) REFERENCES `kost` (`id_kost`);
 
 --
 -- Constraints for table `transaksi`

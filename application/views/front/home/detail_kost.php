@@ -130,9 +130,12 @@
                     </div> -->
                 </div>
                 <?php echo form_close(); ?>
-                <a href="<?php echo base_url('')?>">
-              <button class="btn btn-sm btn-primary">Kembali</button>
-            </a>
+                <a href="<?php echo base_url('cart/buy/') . $kost->id_kost ?>">
+                    <button class="btn btn-sm btn-primary"><i class="fa fa-shopping-cart"></i> Booking Sekarang</button>
+                </a>
+                <a href="<?php echo base_url('') ?>">
+                    <button class="btn btn-sm btn-primary">Kembali</button>
+                </a>
 
 
                 <div class="mt-4 product-share">

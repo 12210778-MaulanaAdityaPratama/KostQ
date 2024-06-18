@@ -33,38 +33,53 @@ class Cart extends CI_Controller
 	}
 
 	public function index()
-	{
-		$this->data['title'] = 'Detail Booking';
+{
+    $this->data['title'] = 'Detail Booking';
 
-		$this->data['tanggal'] = array(
-			'name' => 'tanggal[]',
-			'id' => 'tanggal',
-			'class' => 'tanggal',
-			'required' => '',
-			'autocomplete' => 'off',
-		);
-		$this->data['jam_mulai'] = array(
-			'name' => 'jam_mulai[]',
-			'id' => 'jam_mulai',
-			'class' => 'jam_mulai',
-			'required' => '',
-		);
+    $this->data['tanggal'] = array(
+        'name' => 'tanggal[]',
+        'id' => 'tanggal',
+        'class' => 'tanggal',
+        'required' => '',
+        'autocomplete' => 'off',
+    );
+    $this->data['jam_mulai'] = array(
+        'name' => 'jam_mulai[]',
+        'id' => 'jam_mulai',
+        'class' => 'jam_mulai',
+        'required' => '',
+    );
 
-		// ambil nilai diskon
-		$this->db->select('harga');
-		$this->db->where('id', '1');
-		$query = $this->db->get('diskon')->row_array();
-		$this->data['diskon'] = $query;
+    // ambil nilai diskon
+    $this->db->select('harga');
+    $this->db->where('id', '1');
+    $query = $this->db->get('diskon')->row_array();
+    $this->data['diskon'] = $query;
 
-		// ambil data keranjang
-		$this->data['cart_data'] = $this->Cart_model->get_cart_per_customer()->result();
-		$this->data['cek_keranjang'] = $this->Cart_model->get_cart_per_customer()->row();
-		// ambil data customer
-		$this->data['customer_data'] = $this->Cart_model->get_data_customer();
+    // ambil data keranjang
+    $this->data['cart_data'] = $this->Cart_model->get_cart_per_customer()->result();
+    $this->data['cek_keranjang'] = $this->Cart_model->get_cart_per_customer()->row();
+    
+    // Fetch kost details with images for each item in the cart
+    $this->data['kost_details'] = array(); 
+    foreach ($this->data['cart_data'] as $cart_item) {
+        $kost = $this->Kost_model->detail_kost($cart_item->kost_id);
+        if (!empty($kost->foto)) {
+            $kost->foto = explode(',', $kost->foto); // Convert comma-separated string to array
+        } else {
+            $kost->foto = array(); // Set empty array if no images
+        }
+        $this->data['kost_details'][$cart_item->kost_id] = $kost; // Store kost details in an associative array
+    }
 
-		$this->load->view('front/cart/body', $this->data);
-	}
-	
+    // ambil data customer
+    $this->data['customer_data'] = $this->Cart_model->get_data_customer();
+
+    $this->load->view('front/cart/body', $this->data);
+}
+
+
+
 
 	public function buy($id)
 	{

@@ -64,13 +64,6 @@
                     </li>
                 </ul>
             </li>
-            <li <?php if ($this->uri->segment(2) == "gambarkost") {
-                echo "class='active'";
-            } ?>>
-                <a href="<?php echo base_url('admin/gambarkost') ?>">
-                    <i class='fa fa-newspaper-o'></i><span>Gambar Kost</span>
-                </a>
-            </li>
             <!-- <php if ($this->ion_auth->is_AdminKost()): ?>
             <li <php if($this->uri->segment(2) == "album"){echo "class='active'";} ?>>
                 <a href='#'><i class='fa fa-folder'></i><span> Album </span><i

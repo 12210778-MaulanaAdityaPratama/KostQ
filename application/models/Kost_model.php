@@ -3,6 +3,7 @@
 class Kost_model extends CI_Model
 {
   public $table = 'kost';
+  public $table_image = 'kost_images';
   public $id    = 'id_kost';
   public $nama    = 'nama_kost';
   public $order = 'DESC';
@@ -51,11 +52,12 @@ class Kost_model extends CI_Model
 
   public function detail_kost($id)
     {
-        $this->db->select("*");
-        $this->db->from('kost');
-        //$this->db->join('tb_kategori', 'tb_kategori.id_kategori = tb_barang.id_kategori', 'left');
-        $this->db->where('id_kost', $id);
-        return $this->db->get()->row();
+      $this->db->select('kost.*, GROUP_CONCAT(kost_images.foto) as foto');
+      $this->db->from('kost');
+      $this->db->join('kost_images', 'kost.id_kost = kost_images.id_kost', 'left');
+      $this->db->where('kost.id_kost', $id);
+      $this->db->group_by('kost.id_kost');
+      return $this->db->get()->row();
     }
 
   function ambil_kost()
@@ -244,6 +246,10 @@ class Kost_model extends CI_Model
   {
     $this->db->insert($this->table, $data);
   }
+  public function insert_image($data)
+{
+    $this->db->insert($this->table_image, $data); 
+}
 
   function update($id, $data)
   {
@@ -287,5 +293,59 @@ class Kost_model extends CI_Model
         $query = $this->db->get('kost');
         return $query->result();
     }
+    public function get_kost_with_images($id_kost)
+    {
+        $this->db->select('*');
+        $this->db->from('kost');
+        $this->db->join('kost_images', 'kost.id_kost = kost_images.id_kost');
+        $this->db->where('kost.id_kost', $id_kost);
+        return $this->db->get()->result();
+    }
+    public function get_kost_images($id_kost)
+{
+  $this->db->where('id_kost', $id_kost);
+  return $this->db->get('kost_images')->result(); // Get all matching rows
+}
+// Method to get image by id_kost
+public function get_image_by_id_kost($id_kost) {
+  $this->db->select('id, foto');
+  $this->db->from('kost_images');
+  $this->db->where('id_kost', $id_kost);
+  $query = $this->db->get();
+  return $query->row(); // Return a single row
+}
+ // Method to delete an image by its id
+ public function delete_image($id) {
+  $this->db->where('id', $id);
+  $this->db->delete('kost_images');
+}
+// ... (your existing model code) ...
+
+public function get_all_kost_with_images()
+{
+    $this->db->select('k.*, GROUP_CONCAT(i.foto) as foto'); // Use GROUP_CONCAT to get all images as comma-separated string
+    $this->db->from('kost k');
+    $this->db->join('kost_images i', 'k.id_kost = i.id_kost', 'left');
+    $this->db->group_by('k.id_kost'); // Group by kost ID
+    $query = $this->db->get();
+
+    $kosts = $query->result();
+
+    // Process results to create an array of images for each kost
+    foreach ($kosts as &$kost) {
+        if ($kost->foto) {
+            $kost->foto = explode(',', $kost->foto); // Convert comma-separated string to array
+        } else {
+            $kost->foto = array(); // Set empty array if no images
+        }
+    }
+
+    return $kosts;
+}
+
+
+
+
+
 
 }

@@ -24,8 +24,13 @@
 						<div class="box-body table-responsive padding">
 							<?php foreach ($cart_data as $detail ) { ?>
 								<div class="row">
-									<div class="col-sm-4"><img src="<?php echo base_url('./assets/images/kost/'.$detail->foto)?>" alt="gambar<?php echo $detail->nama_kost ?>" width="300" height="200" ></div>
-									<div class="col-sm-5">
+								<div class="col-sm-4">
+                                        <?php if (!empty($kost_details[$detail->kost_id]->foto)) { ?>
+                                            <?php foreach ($kost_details[$detail->kost_id]->foto as $image) { ?>
+                                                <img src="<?php echo base_url('./assets/images/kost/'.$image) ?>" alt="gambar <?php echo $kost_details[$detail->kost_id]->nama_kost ?>" width="300" height="200">
+                                            <?php } ?>
+                                        <?php } ?>
+                                    </div>									<div class="col-sm-5">
 									<b><i class="fa-solid fa-house"></i>&ensp; Nama Kost&ensp; : <?php echo $detail->nama_kost?></b><br>
 									<b><i class="fa-solid fa-money-bill"></i>&ensp; Harga&ensp; : <?php echo number_format($detail->harga);?>,-</b><br>
 									<b><i class="fa-solid fa-bed"></i>&ensp; Sisa Kamar&ensp; : <?php echo $detail->sisa_kost?> Kamar</b><br>

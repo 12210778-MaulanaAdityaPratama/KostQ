@@ -4,25 +4,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Home extends CI_Controller {
 
 	public function index()
-	{
-		$this->data['title'] = 'Home';
+{
+    $this->data['title'] = 'Home';
 
-		$this->load->model('Company_model');
-		$this->load->model('Promosi_model');
-		$this->load->model('Foto_model');
-		$this->load->model('Kontak_model');
-		$this->load->model('Kost_model');
-		$this->load->model('Slider_model');
+    $this->load->model('Company_model');
+    $this->load->model('Promosi_model');
+    $this->load->model('Foto_model');
+    $this->load->model('Kontak_model');
+    $this->load->model('Kost_model');
+    $this->load->model('Slider_model');
 
-		$this->data['company_data'] 	= $this->Company_model->get_by_company();
-		$this->data['promosi_new'] 			= $this->Promosi_model->get_all_new_home();
-		$this->data['foto_data'] 			= $this->Foto_model->get_all_new_home();
-		$this->data['slider_data'] 		= $this->Slider_model->get_all_home();
-		$this->data['kontak'] 				= $this->Kontak_model->get_all();
-		$this->data['kost_new'] 	= $this->Kost_model->get_all_home();
+    $this->data['company_data'] 	= $this->Company_model->get_by_company();
+    $this->data['promosi_new'] 		= $this->Promosi_model->get_all_new_home();
+    $this->data['foto_data'] 		= $this->Foto_model->get_all_new_home();
+    $this->data['slider_data'] 		= $this->Slider_model->get_all_home();
+    $this->data['kontak'] 			= $this->Kontak_model->get_all();
+    $this->data['kost_new'] 		= $this->Kost_model->get_all_kost_with_images();
 
-		$this->load->view('front/home/body', $this->data);
-	}
+    $this->load->view('front/home/body', $this->data);
+}
+
 
     public function search()
     {
@@ -78,14 +79,23 @@ class Home extends CI_Controller {
     }
 
     public function detail_kost($id)
-    {
-        $this->load->model('Kost_model');
-        $data = array(
-            'title' => 'Detail Kost',
-            //'gambar' => $this->m_home->gambar_barang($id),
-            'kost' => $this->Kost_model->detail_kost($id),
-            //'isi' => 'v_detail_Kost',
-        );
-        $this->load->view('front/home/detail_kost', $data);
+{
+    $this->load->model('Kost_model');
+    $kost = $this->Kost_model->detail_kost($id);
+
+    if (!empty($kost->foto)) {
+        $kost->foto = explode(',', $kost->foto); // Convert comma-separated string to array
+    } else {
+        $kost->foto = array(); // Set empty array if no images
     }
+
+    $data = array(
+        'title' => 'Detail Kost',
+        'kost' => $kost,
+    );
+
+    $this->load->view('front/home/detail_kost', $data);
+}
+
+
 }

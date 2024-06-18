@@ -150,50 +150,15 @@ class Kost extends CI_Controller
 
 
   public function create_action()
-  {
+{
     $this->_rules();
 
     if ($this->form_validation->run() == FALSE) {
-      $this->create();
+        $this->create();
     } else {
-      /* 4 adalah menyatakan tidak ada file yang diupload*/
-      if ($_FILES['foto']['error'] <> 4) {
-        $nmfile = strtolower(url_title($this->input->post('nama_kost'))) . date('YmdHis');
 
-        /* memanggil library upload ci */
-        $config['upload_path'] = './assets/images/kost/';
-        $config['allowed_types'] = 'jpg|jpeg|png|gif|mp4';
-        $config['max_size'] = '30000'; // 2 MB
-        $config['file_name'] = $nmfile; //nama yang terupload nantinya
-
-        $this->load->library('upload', $config);
-
-        if (!$this->upload->do_upload('foto')) {
-          //file gagal diupload -> kembali ke form tambah
-          $error = array('error' => $this->upload->display_errors());
-          $this->session->set_flashdata('message', '<div class="alert alert-danger alert">' . $error['error'] . '</div>');
-
-          $this->create();
-        }
-        //file berhasil diupload -> lanjutkan ke query INSERT
-        else {
-          $foto = $this->upload->data();
-          $thumbnail = $config['file_name'];
-          // library yang disediakan codeigniter
-          $config['image_library'] = 'gd2';
-          // gambar yang akan disimpan thumbnail
-          $config['source_image'] = './assets/images/kost/' . $foto['file_name'] . '';
-          // rasio resolusi
-          $config['maintain_ratio'] = FALSE;
-          // lebar
-          $config['width'] = 1280;
-          // tinggi
-          $config['height'] = 720;
-
-          $this->load->library('image_lib', $config);
-          $this->image_lib->resize();
-
-          $data = array(
+        // Data to be inserted into the 'kost' table
+        $data = array(
             'nama_kost' => $this->input->post('nama_kost'),
             'harga' => $this->input->post('harga'),
             'nama_perusahaan' => $this->input->post('nama_perusahaan'),
@@ -204,51 +169,87 @@ class Kost extends CI_Controller
             'deskripsi' => $this->input->post('deskripsi'),
             'provinsi' => $this->input->post('provinsi_id'),
             'kota' => $this->input->post('kota_id'),
-            'foto' => $nmfile . $foto['file_ext'],
             'created_by' => $this->session->userdata('username')
-          );
-
-          // eksekusi query INSERT
-          $this->Kost_model->insert($data);
-          // set pesan data berhasil disimpan
-          $this->session->set_flashdata('message', '
-            <div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button>
-              <i class="ace-icon fa fa-bullhorn green"></i> Data berhasil disimpan
-            </div>');
-          redirect(site_url('admin/kost'));
-        }
-      } else // Jika file upload kosong
-      {
-        $data = array(
-          'nama_kost' => $this->input->post('nama_kost'),
-          'harga' => $this->input->post('harga'),
-          'nama_perusahaan' => $this->input->post('nama_perusahaan'),
-          'lokasi' => $this->input->post('lokasi'),
-          'no_hp' => $this->input->post('no_hp'),
-          'deskripsi' => $this->input->post('deskripsi'),
-          'kategori' => $this->input->post('kat_id'),
-          'provinsi' => $this->input->post('provinsi_id'),
-          'kota' => $this->input->post('kota_id'),
-          'sisa_kost' => implode(' ', $this->input->post('sisa_kost')),
-          'created_by' => $this->session->userdata('username')
         );
 
-        // eksekusi query INSERT
+        // Insert the kost data first
         $this->Kost_model->insert($data);
-        // set pesan data berhasil disimpan
-        $this->session->set_flashdata('message', '
-        <div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button>
-          <i class="ace-icon fa fa-bullhorn green"></i> Data berhasil disimpan
-        </div>');
+
+        // Get the new kost's ID
+        $id_kost = $this->db->insert_id();
+
+        // Check if a file was uploaded
+        if ($_FILES['foto']['error'][0] != 4) { // Check the first file's error code
+
+            // File Upload Configuration
+            $config['upload_path'] = './assets/images/kost/';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif|mp4';
+            $config['max_size'] = '30000';
+            $config['image_library'] = 'gd2';
+            $config['maintain_ratio'] = FALSE;
+            $config['width'] = 1280;
+            $config['height'] = 720;
+
+            // Load the upload library
+            $this->load->library('upload');
+
+            // File Upload Handling (Multiple)
+            $count = count($_FILES['foto']['name']);
+            for ($i = 0; $i < $count; $i++) {
+                // Prepare file information for CodeIgniter's Upload library
+                $_FILES['file']['name'] = $_FILES['foto']['name'][$i];
+                $_FILES['file']['type'] = $_FILES['foto']['type'][$i];
+                $_FILES['file']['tmp_name'] = $_FILES['foto']['tmp_name'][$i];
+                $_FILES['file']['error'] = $_FILES['foto']['error'][$i];
+                $_FILES['file']['size'] = $_FILES['foto']['size'][$i];
+
+                // Generate a unique filename
+                $originalFileName = pathinfo($_FILES['foto']['name'][$i], PATHINFO_FILENAME);
+                $nmfile = $originalFileName . date('YmdHis') . '_' . str_pad($i, 3, '0', STR_PAD_LEFT);
+                $config['file_name'] = $nmfile;
+
+                // Initialize upload library with current file configuration
+                $this->upload->initialize($config);
+
+                if ($this->upload->do_upload('file')) { // Use 'file' as the upload field
+                    $foto = $this->upload->data();
+
+                    // Prepare data for the 'kost_images' table
+                    $imageData = array(
+                        'id_kost' => $id_kost,
+                        'foto' => $nmfile . $foto['file_ext'],
+                    );
+                    $this->Kost_model->insert_image($imageData);
+
+                    // Initialize the Image_lib library for resizing
+                    $resizeConfig = array(
+                        'source_image' => $foto['full_path'],
+                        'maintain_ratio' => FALSE,
+                        'width' => 1280,
+                        'height' => 720,
+                    );
+                    $this->load->library('image_lib', $resizeConfig);
+                    $this->image_lib->resize();
+                    $this->image_lib->clear(); // Clear configuration for the next file
+                }
+            }
+        }
+
+        // Set flash message and redirect
+        $this->session->set_flashdata('message', '<div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-bullhorn green"></i> Data berhasil disimpan</div>');
         redirect(site_url('admin/kost'));
-      }
     }
-  }
+}
+
+
+  
 
   public function update($id)
   {
     $row = $this->Kost_model->get_by_id($id);
     $this->data['kost'] = $this->Kost_model->get_by_id($id);
+    $this->data['id_kost'] = $id; 
+    $this->data['kost_images'] = $this->Kost_model->get_kost_images($id); // Fetch images
 
     if ($row) {
       $this->data['title'] = 'Ubah Data ' . $this->data['module'];
@@ -330,63 +331,14 @@ class Kost extends CI_Controller
   }
 
   public function update_action()
-  {
+{
     $this->_rules();
 
     if ($this->form_validation->run() == FALSE) {
-      $this->update($this->input->post('id_kost'));
+        $this->update($this->input->post('id_kost'));
     } else {
-      $nmfile = strtolower(url_title($this->input->post('nama_kost'))) . date('YmdHis');
-
-      /* Jika file upload diisi */
-      if ($_FILES['foto']['error'] <> 4) {
-        $nmfile = strtolower(url_title($this->input->post('nama_kost'))) . date('YmdHis');
-
-        //load uploading file library
-        $config['upload_path'] = './assets/images/kost/';
-        $config['allowed_types'] = 'jpg|jpeg|png|gif|mp4';
-        $config['max_size'] = '30000'; // 2 MB
-        $config['file_name'] = $nmfile; //nama yang terupload nantinya
-
-        $this->load->library('upload', $config);
-
-        // Jika file gagal diupload -> kembali ke form update
-        if (!$this->upload->do_upload('foto')) {
-          //file gagal diupload -> kembali ke form update
-          $error = array('error' => $this->upload->display_errors());
-          $this->session->set_flashdata('message', '<div class="alert alert-danger alert">' . $error['error'] . '</div>');
-
-          $this->update($this->input->post('id_kost'));
-        }
-        // Jika file berhasil diupload -> lanjutkan ke query INSERT
-        else {
-          $delete = $this->Kost_model->del_by_id($this->input->post('id_kost'));
-
-          $dir = "assets/images/kost/" . $delete->foto;
-
-          if (file_exists($dir)) {
-            // Hapus foto dan thumbnail
-            unlink($dir);
-          }
-
-          $foto = $this->upload->data();
-          // library yang disediakan codeigniter
-          $thumbnail = $config['file_name'];
-          //nama yang terupload nantinya
-          $config['image_library'] = 'gd2';
-          // gambar yang akan disimpan thumbnail
-          $config['source_image'] = './assets/images/kost/' . $foto['file_name'] . '';
-          // rasio resolusi
-          $config['maintain_ratio'] = FALSE;
-          // lebar
-          $config['width'] = 1280;
-          // tinggi
-          $config['height'] = 720;
-
-          $this->load->library('image_lib', $config);
-          $this->image_lib->resize();
-
-          $data = array(
+        $id_kost = $this->input->post('id_kost');
+        $data = array(
             'nama_kost' => $this->input->post('nama_kost'),
             'harga' => $this->input->post('harga'),
             'provinsi' => $this->input->post('provinsi'),
@@ -396,72 +348,113 @@ class Kost extends CI_Controller
             'sisa_kost' => $this->input->post('sisa_kost'),
             'kategori' => $this->input->post('kat_id'),
             'deskripsi' => $this->input->post('deskripsi'),
-            'foto' => $nmfile . $foto['file_ext'],
             'modified_by' => $this->session->userdata('username')
-          );
-
-          $this->Kost_model->update($this->input->post('id_kost'), $data);
-          $this->session->set_flashdata('message', '
-              <div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button>
-                <i class="ace-icon fa fa-bullhorn green"></i> Data berhasil disimpan
-              </div>');
-          redirect(site_url('admin/kost'));
-        }
-      }
-      // Jika file upload kosong
-      else {
-        $data = array(
-          'nama_kost' => $this->input->post('nama_kost'),
-          'harga' => $this->input->post('harga'),
-          'provinsi' => $this->input->post('provinsi'),
-          'kota' => $this->input->post('kota'),
-          'lokasi' => $this->input->post('lokasi'),
-          'no_hp' => $this->input->post('no_hp'),
-          'sisa_kost' => $this->input->post('sisa_kost'),
-          'kategori' => $this->input->post('kat_id'),
-          'deskripsi' => $this->input->post('deskripsi'),
-          'modified_by' => $this->session->userdata('username')
         );
 
-        $this->Kost_model->update($this->input->post('id_kost'), $data);
+        $this->Kost_model->update($id_kost, $data);
+
+        // Check if a new file is uploaded
+        if (!empty($_FILES['foto']['name'][0])) {
+            $config['upload_path'] = './assets/images/kost/';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif|mp4';
+            $config['max_size'] = '30000';
+
+            // Load upload library
+            $this->load->library('upload');
+
+            // File Upload Handling (Multiple)
+            $count = count($_FILES['foto']['name']);
+            for ($i = 0; $i < $count; $i++) {
+                $originalFileName = pathinfo($_FILES['foto']['name'][$i], PATHINFO_FILENAME);
+                $nmfile = $originalFileName . date('YmdHis') . '_' . str_pad($i, 3, '0', STR_PAD_LEFT);
+                $config['file_name'] = $nmfile;
+
+                // Initialize upload library with current file configuration
+                $this->upload->initialize($config);
+
+                // Prepare file information for CodeIgniter's Upload library
+                $_FILES['file']['name'] = $_FILES['foto']['name'][$i];
+                $_FILES['file']['type'] = $_FILES['foto']['type'][$i];
+                $_FILES['file']['tmp_name'] = $_FILES['foto']['tmp_name'][$i];
+                $_FILES['file']['error'] = $_FILES['foto']['error'][$i];
+                $_FILES['file']['size'] = $_FILES['foto']['size'][$i];
+
+                if ($this->upload->do_upload('file')) {
+                    // Delete old image
+                    $existing_image = $this->Kost_model->get_image_by_id_kost($id_kost);
+                    if ($existing_image) {
+                        $dir = "assets/images/kost/" . $existing_image->foto;
+                        if (file_exists($dir)) {
+                            unlink($dir);
+                        }
+                        $this->Kost_model->delete_image($existing_image->id);
+                    }
+
+                    $foto = $this->upload->data();
+
+                    // Image resizing (if needed)
+                    $resizeConfig = array(
+                        'source_image' => $foto['full_path'],
+                        'maintain_ratio' => FALSE,
+                        'width' => 1280,
+                        'height' => 720,
+                    );
+                    $this->load->library('image_lib', $resizeConfig);
+                    $this->image_lib->resize();
+                    $this->image_lib->clear();
+
+                    // Insert new image data
+                    $imageData = array(
+                        'id_kost' => $id_kost,
+                        'foto' => $nmfile . $foto['file_ext'],
+                    );
+                    $this->Kost_model->insert_image($imageData);
+                }
+            }
+        }
+
         $this->session->set_flashdata('message', '
-            <div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button>
-              <i class="ace-icon fa fa-bullhorn green"></i> Data berhasil disimpan
+            <div class="alert alert-block alert-success">
+                <button type="button" class="close" data-dismiss="alert">
+                    <i class="ace-icon fa fa-times"></i>
+                </button>
+                <i class="ace-icon fa fa-bullhorn green"></i> Data berhasil disimpan
             </div>');
         redirect(site_url('admin/kost'));
-      }
     }
-  }
+}
 
-  public function delete($id)
-  {
-    $delete = $this->Kost_model->del_by_id($id);
+public function delete($id_kost)
+{
+    // Get the kost and associated images
+    $kost = $this->Kost_model->get_by_id($id_kost);
+    $kost_images = $this->Kost_model->get_kost_images($id_kost);
 
-    // menyimpan lokasi gambar dalam variable
-    $dir = "assets/images/foto/" . $delete->foto . $delete->foto_type;
-
-    // Hapus foto
-    unlink($dir);
-
-    // Jika data ditemukan, maka hapus foto dan record nya
-    if ($delete) {
-      $this->Kost_model->delete($id);
-
-      $this->session->set_flashdata('message', '
-      <div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button>
-        <i class="ace-icon fa fa-bullhorn green"></i> Data berhasil dihapus
-      </div>');
-      redirect(site_url('admin/kost'));
+    // Delete the images
+    if (!empty($kost_images)) {
+        foreach ($kost_images as $image) {
+            $dir = "assets/images/kost/" . $image->foto;
+            if (file_exists($dir)) {
+                unlink($dir); // Delete image file
+            }
+            $this->Kost_model->delete_image($image->id); // Delete image record
+        }
     }
-    // Jika data tidak ada
-    else {
-      $this->session->set_flashdata('message', '
-        <div class="alert alert-block alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button>
-					<i class="ace-icon fa fa-bullhorn green"></i> Data tidak ditemukan
+    
+    // Delete the kost data
+    $this->Kost_model->delete($id_kost);
+
+    $this->session->set_flashdata('message', '
+        <div class="alert alert-block alert-success">
+            <button type="button" class="close" data-dismiss="alert">
+                <i class="ace-icon fa fa-times"></i>
+            </button>
+            <i class="ace-icon fa fa-bullhorn green"></i> Data berhasil dihapus
         </div>');
-      redirect(site_url('admin/kost'));
-    }
-  }
+
+    redirect(site_url('admin/kost')); 
+}
+
 
   public function _rules()
   {

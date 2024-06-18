@@ -54,17 +54,28 @@
               <div class="form-group"><label>Deskripsi Kost</label>
                 <?php echo form_textarea($deskripsi, $kost->deskripsi); ?>
               </div>
-              <div class="form-group"><label>Foto Sebelumnya</label><br>
-                <img src="<?php echo base_url('assets/images/kost/' . $kost->foto . '') ?>" width="300px"
-                  class="img-responsive" />
-              </div>
-              <div class="form-group"><label>Foto Baru</label>
-                <input type="file" class="form-control" name="foto" id="foto"
-                  onchange="tampilkanPreview(this,'preview')" />
-                <br>
-                <p><b>Preview Foto</b><br>
-                  <img id="preview" src="" alt="" width="300px" />
-              </div>
+              <div class="form-group">
+    <label>Foto Sebelumnya</label><br>
+    <div id="image-container">
+        <?php if (!empty($kost_images)): ?>
+            <?php foreach ($kost_images as $image): ?>
+                <div class="existing-image">
+                    <img src="<?php echo base_url('assets/images/kost/' . $image->foto); ?>" width="300px" class="img-responsive" />
+                    <p><?php echo $image->foto; ?></p> </div>
+                    </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>Tidak ada foto sebelumnya.</p>
+        <?php endif; ?>
+    </div>
+</div>
+<div class="form-group">
+    <label>Foto Baru</label>
+    <input type="file" class="form-control" name="foto[]" id="foto" multiple onchange="tampilkanPreview(this, 'preview')" />
+    <br>
+    <p><b>Preview Foto</b><br>
+    <div id="preview"></div>
+</div>
             </div>
             <?php echo form_input($id_kost, $kost->id_kost); ?>
             <div class="box-footer">
@@ -80,30 +91,30 @@
   <?php $this->load->view('back/footer') ?>
 </div><!-- ./wrapper -->
 <?php $this->load->view('back/js') ?>
-<script type="text/javascript">
-  function tampilkanPreview(foto, idpreview) { //membuat objek gambar
-    var gb = foto.files;
-    //loop untuk merender gambar
-    for (var i = 0; i < gb.length; i++) { //bikin variabel
-      var gbPreview = gb[i];
-      var imageType = /image.*/;
-      var preview = document.getElementById(idpreview);
-      var reader = new FileReader();
-      if (gbPreview.type.match(imageType)) { //jika tipe data sesuai
-        preview.file = gbPreview;
-        reader.onload = (function (element) {
-          return function (e) {
-            element.src = e.target.result;
-          };
-        })(preview);
-        //membaca data URL gambar
-        reader.readAsDataURL(gbPreview);
-      }
-      else { //jika tipe data tidak sesuai
-        alert("Tipe file tidak sesuai. Gambar harus bertipe .png, .gif atau .jpg.");
-      }
+<script>
+function tampilkanPreview(foto, idpreview) {
+    var previewContainer = document.getElementById(idpreview);
+    previewContainer.innerHTML = ''; // Clear previous previews
+
+    var files = foto.files;
+    for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        var imageType = /image.*/;
+        if (file.type.match(imageType)) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var img = document.createElement('img');
+                img.src = e.target.result;
+                img.width = 300; // Set width
+                img.classList.add('img-responsive', 'preview-image'); // Add classes
+                previewContainer.appendChild(img);
+            }
+            reader.readAsDataURL(file);
+        } else {
+            alert("Tipe file tidak sesuai. Gambar harus bertipe .png, .gif atau .jpg.");
+        }
     }
-  }
+}
 </script>
 <script type="text/javascript">
   function tampilKota() {

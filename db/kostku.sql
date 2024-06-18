@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2024 at 12:46 PM
+-- Generation Time: Jun 18, 2024 at 08:46 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -105,7 +105,7 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`id_company`, `company_name`, `company_desc`, `company_address`, `company_maps`, `company_phone`, `company_phone2`, `company_fax`, `company_email`, `foto`, `foto_type`, `created`, `modified`, `created_by`, `modified_by`) VALUES
-(1, 'KostQ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel nibh ac nisl porttitor tempus sit amet et diam. Etiam sed leo eu elit varius venenatis sed ac arcu. Praesent malesuada gravida diam et tincidunt. Mauris quis metus eget magna efficitur scelerisque. Sed mollis porttitor erat ullamcorper sodales. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse congue, dolor ultricies mollis molestie, libero diam auctor mauris, ultrices euismod leo justo vel enim. Etiam non rutrum arcu. Maecenas at dictum dui, sit amet gravida mauris. Vivamus sagittis neque in purus dapibus, ut pellentesque purus pulvinar. Nunc pretium porta ipsum, at iaculis felis elementum in. Duis cursus ex vitae nunc hendrerit blandit.\r\n\r\nMorbi vel est sed dui tristique elementum sed sed purus. Ut interdum nisi et felis vulputate, quis tempus diam blandit. Mauris tincidunt tellus faucibus, posuere turpis a, consectetur lacus. Nullam quis ipsum neque. Praesent sapien tellus, molestie et diam vel, cursus tristique neque. Nullam sit amet ornare odio. Ut vehicula risus id lacus blandit rutrum. Duis non molestie purus. Etiam turpis ligula, tincidunt sit amet dolor at, rutrum viverra orci. Etiam egestas urna id velit bibendum mollis.\r\n\r\nSed eu sem cursus, congue massa at, bibendum leo. Praesent cursus in nulla a egestas. Fusce aliquam leo eu enim feugiat ullamcorper. Nullam pulvinar dolor eu lacinia bibendum. Integer id ipsum cursus, luctus enim nec, fringilla dolor. Sed sit amet ipsum sit amet quam suscipit gravida vitae ut elit. Donec pellentesque non tortor vitae euismod. Praesent suscipit tempor ex ac viverra. Nunc ut sapien eu velit tempor hendrerit. Vestibulum posuere nisl massa, ornare commodo lorem sagittis ultrices. Sed eget rutrum neque, sed ullamcorper dui. Sed ultricies purus vitae lectus cursus, vestibulum faucibus quam posuere. Donec cursus vitae ipsum nec ullamcorper. Donec maximus orci finibus ante hendrerit, vitae maximus quam facilisis. Cras commodo fringilla porttitor.\r\n\r\nNam pharetra a tortor quis venenatis. Nunc lectus nibh, auctor id ante vel, interdum maximus felis. Cras libero est, mattis a sollicitudin sit amet, ultricies sed tellus. Ut augue lacus, luctus convallis enim quis, ultricies aliquet sem. Sed venenatis eros sit amet velit varius, ac rhoncus nibh sodales. Etiam sit amet efficitur est, vel pretium arcu. Morbi diam nulla, dictum quis ornare ultrices, pharetra quis mi. Nam sollicitudin pharetra congue. Praesent sed mauris at ante tincidunt blandit. Aliquam cursus ante efficitur, iaculis turpis eget, ornare quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla quis lobortis leo. Cras ut risus orci. Sed mattis purus ac libero suscipit, nec venenatis tortor semper. Aliquam sodales massa eget dignissim pharetra.\r\n\r\nNam sed enim vitae erat vulputate feugiat in tempus metus. In maximus erat risus. Donec et viverra nibh. Maecenas hendrerit, sapien id suscipit fermentum, tellus nisl sollicitudin erat, non laoreet dui ex sit amet odio. Nullam sit amet arcu sed felis tempor dapibus. Aliquam erat volutpat. Aenean malesuada a eros sed aliquet. Phasellus condimentum lobortis sapien, sit amet viverra sem iaculis venenatis. Morbi interdum nulla ut nulla fringilla commodo. In eu magna ornare libero pellentesque congue. Vestibulum ultrices congue feugiat.', 'Jl. Ambangah Jak..... No. 354', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16327777.649419477!2d108.84621849858628!3d-2.415291213289622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2c4c07d7496404b7%3A0xe37b4de71badf485!2sIndonesia!5e0!3m2!1sen!2sid!4v1506312173230\" width=\"100%\" height=\"200\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '081234567890', '081234567890', '354', 'toko@gmail.com', 'kostq20240516103607', '.png', '2017-11-09 06:45:34', NULL, 'amperakoding', 'Dido Khoirulrijal');
+(1, 'KostQ', 'Kost? konsep marketplace yang dapat mempertemukan antara pemilik kost dengan menyewa kost dalam satu website. Dari kebutuhan masyarakat akan kost - kost-an, inilah banyak pula penyewaan kost yang menyediakan berbagai fasilitas kost. Awamnya pengetahuan masyarakat terkait informasi penyewaan kost, sehingga akhirnya membuat seseorang sulit dalam mencari kost. \"Hampir seluruh kalangan baik anak muda maupun tua memanfaatkan internet untuk kehidupan pribadi seperti mencari informasi mengenai suatu tempat, contohnya mencari tempat layanan kos. <br><br>\r\n Untuk mengatasi permasalahan yang diatas tersebut, kami akan merancang sebuah system berbasis website untuk mempermudahkan pemilik kostan dalam mengelola data kostan dari pemesanan, penyewaan, pembayaran serta laporan yang dapat dikelola dengan baik oleh pemilik dan memudahkan penyewa kostan baik mahasiswa, karyawan, maupun masyarakat umum yang akan menyewa kostan tanpa harus bersusah payah mendatangi kost ke satu kost lainnya tetapi cukup dengan membuka aplikasi melalui situs website. Dari segi waktu dan biaya lebih efisien. Pembayaran pun dapat dilakukan melalui website ini. <br> <br>\r\nTujuan dari penelitian ini adalah untuk menghasilkan suatu informasi yang cepat dan akurat dalam membantu pemesanana maupun promosi kost. \"Pemilik harus melakukan kegiatan promosi yang efektif agar minat pelanggan meningkat dan penjualan produk meningkat (yusma et al., 2021) Tahap analisis kebutuhan sistem pada perancangan sistem pencarian kost berbasis web yaitu menganalisis kebutuhan pengguna terhadap sistem. Di dalam website ini dapat berisikan tentang informasi informasi yang menyediakan suatu yang berisi kost-kostan, yang dikemas secara detail, dilengkapi dengan letak lokasi kost dan fasilitas lainnya. Untuk itu sebagai pendukung kebutuhan sistem yang dibutuhkan untuk kelancaran dari proses pencarian kost dengan menggunakan website yang kami buat.\r\n', 'Jl. Ambangah Jak..... No. 354', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16327777.649419477!2d108.84621849858628!3d-2.415291213289622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2c4c07d7496404b7%3A0xe37b4de71badf485!2sIndonesia!5e0!3m2!1sen!2sid!4v1506312173230\" width=\"100%\" height=\"200\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '081234567890', '081234567890', '354', 'kostq@gmail.com', 'kostq20240618064903', '.png', '2017-11-09 06:45:34', NULL, 'amperakoding', 'Dido Khoirulrijal');
 
 -- --------------------------------------------------------
 
@@ -1484,7 +1484,7 @@ CREATE TABLE `slider` (
 --
 
 INSERT INTO `slider` (`id_slider`, `no_urut`, `nama_slider`, `link`, `foto`, `foto_type`, `foto_size`, `created_at`, `created_by`, `modified_at`, `modified_by`) VALUES
-(11, 1, '', '', '120240607102028', '.png', 0, '2024-06-07 10:20:28', '', '2024-06-07 20:39:53', 'Dido Khoirulrijal'),
+(11, 1, '', 'http://localhost/KostQ/home/detail_kost/34', '120240607102028', '.png', 0, '2024-06-07 10:20:28', '', '2024-06-16 17:14:04', 'Dido Khoirulrijal'),
 (12, 2, '', 'https://api.whatsapp.com/send?phone=+&lt;?php echo $kontak->nohp ?&gt;&text=Hi admin', '220240607102042', '.png', 0, '2024-06-07 10:20:42', '', '2024-06-07 21:23:40', 'Dido Khoirulrijal'),
 (13, 3, '', '', '320240607102052', '.png', 0, '2024-06-07 10:20:52', '', NULL, ''),
 (14, 4, '', '', '420240607110404', '.png', 0, '2024-06-07 11:04:04', '', NULL, '');
@@ -1501,6 +1501,19 @@ CREATE TABLE `subscriber` (
   `status` int(11) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_gambar`
+--
+
+CREATE TABLE `tb_gambar` (
+  `id_gambar` int(9) NOT NULL,
+  `id_kost` int(9) DEFAULT NULL,
+  `ket` varchar(225) DEFAULT NULL,
+  `gambar` varchar(225) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1550,7 +1563,10 @@ INSERT INTO `transaksi` (`id_trans`, `id_invoice`, `user_id`, `subtotal`, `disko
 (21, 'J-240606-0002', 7, 0, 0, 0, '0000-00-00 00:00:00', '', 0, '2024-06-06', '04:13:01'),
 (22, 'J-240607-0003', 8, 650000, 50000, 600000, '2024-06-07 23:38:52', '', 1, '2024-06-07', '10:11:37'),
 (23, 'J-240607-0004', 8, 800000, 50000, 750000, '2024-06-08 00:48:37', '', 1, '2024-06-07', '11:48:23'),
-(24, 'J-240609-0005', 8, 0, 0, 0, '0000-00-00 00:00:00', '', 0, '2024-06-09', '03:06:45');
+(24, 'J-240609-0005', 8, 3000000, 50000, 2950000, '2024-06-10 11:33:19', '', 1, '2024-06-09', '03:06:45'),
+(25, 'J-240610-0006', 8, 1800000, 50000, 1750000, '2024-06-10 11:35:11', '', 2, '2024-06-10', '10:34:21'),
+(26, 'J-240610-0007', 8, 800000, 50000, 750000, '2024-06-18 06:47:37', '', 1, '2024-06-10', '10:40:42'),
+(27, 'J-240618-0008', 8, 0, 0, 0, '0000-00-00 00:00:00', '', 0, '2024-06-18', '12:01:21');
 
 -- --------------------------------------------------------
 
@@ -1583,7 +1599,10 @@ INSERT INTO `transaksi_detail` (`id_transdet`, `trans_id`, `kost_id`, `tanggal`,
 (60, 20, 29, '2024-06-07', '07:00:00', 1, '08:00:00', NULL, 1000000, 1000000, '2024-06-07 21:31:34'),
 (61, 22, 27, '2024-06-11', '06:00:00', 1, '07:00:00', NULL, 650000, 650000, '2024-06-07 22:11:37'),
 (62, 23, 30, '2024-06-08', '22:00:00', 1, '23:00:00', 354, 800000, 800000, '2024-06-07 23:48:23'),
-(65, 24, 27, '0000-00-00', '00:00:00', 0, '00:00:00', NULL, 650000, 650000, '2024-06-09 15:12:38');
+(69, 24, 33, '2024-06-11', '09:00:00', 5, '14:00:00', 354, 600000, 3000000, '2024-06-10 10:30:14'),
+(70, 25, 33, '2024-06-11', '07:00:00', 3, '10:00:00', 354, 600000, 1800000, '2024-06-10 10:34:22'),
+(73, 26, 30, '2024-06-18', '21:00:00', 1, '22:00:00', 354, 800000, 800000, '2024-06-18 05:44:34'),
+(75, 27, 30, '0000-00-00', '00:00:00', 0, '00:00:00', NULL, 800000, 800000, '2024-06-18 12:02:12');
 
 -- --------------------------------------------------------
 
@@ -1626,9 +1645,9 @@ INSERT INTO `users` (`id`, `name`, `username`, `password`, `email`, `phone`, `pr
 (3, 'Batistuta', 'userpelanggan', '$2y$08$TWMdtdacqPE5yEz9n1LwFuhEVmiDTTsupl12M45tCQihzF1tu2N/6', 'userpelanggan@gmail.com', '0812412414', 33, 327, 'Jl. Skdlajsdlasjkdl', 4, 1, NULL, NULL, '127.0.0.1', NULL, NULL, NULL, NULL, NULL, 1675092041, 1528634033, '2023-01-30 22:20:41'),
 (4, 'User Premium', 'userpremium', '$2y$08$Wv3MA.DnwTNzBeF62o9neuSXeVdIA/bjlxOzSxtD6DtgStEBn//s.', 'userpremium@gmail.com', '0812412412', 3, 106, 'kaljdklasjdkl', 3, 1, NULL, NULL, '::1', NULL, NULL, NULL, NULL, NULL, 1621252638, 1531807819, '2021-05-17 18:57:18'),
 (5, 'derza', 'derza', '$2y$08$N7ozSVK16uSZAc25T2T9tetfaa0bs4CfjQxXexkfACBFIQJuy8v6m', 'derza123@gmail.com', '08123456789', 12, 365, 'jnnojol', 4, 1, NULL, NULL, '::1', NULL, NULL, NULL, NULL, NULL, 1715419326, 1715345107, '2024-05-11 16:22:06'),
-(6, 'Dido Khoirulrijal', 'Dido Khoirulrijal', '$2y$08$B/MGsCPU0KMqf8/Mlpo4WemHmSpiVTsEOFFRswZ5NjBlHsF9QYUqG', 'dido123@gmail.com', '081234567890', NULL, NULL, 'gahgcihwijchwhcwjcnowhw', 1, 1, 'dido-khoirulrijal20240511164052', '.jpg', '::1', NULL, NULL, NULL, NULL, NULL, 1717926749, 1715420452, '2024-06-09 16:52:29'),
-(7, 'siti ', 'siti', '$2y$08$FA/xt1MSvf5YvvqxQqjRiew7UhM06Pw59.ED1sdbM8ZCWgm6AdTAW', 'siti123@gmail.com', '081234567890', NULL, NULL, 'fewfewfw', 2, 1, 'siti20240511164956', '.png', '::1', NULL, NULL, '8fl0UPiFKfQZC.iz5AFvJee7a7119b90a6e53737', 1716780361, NULL, 1717893192, 1715420996, '2024-06-09 07:33:12'),
-(8, 'derza1', 'derza1', '$2y$08$vwOopGqu08brCSlKjs9i8.7FhxU6jXNiRG3UpGkpHl24wt3qS7UA2', 'derza12@gmail.com', '081234567890', 17, 48, 'y8giyhbiuhoij', 3, 1, NULL, NULL, '::1', NULL, NULL, NULL, NULL, NULL, 1717920390, 1715656961, '2024-06-09 15:06:30'),
+(6, 'Dido Khoirulrijal', 'Dido Khoirulrijal', '$2y$08$B/MGsCPU0KMqf8/Mlpo4WemHmSpiVTsEOFFRswZ5NjBlHsF9QYUqG', 'dido123@gmail.com', '081234567890', NULL, NULL, 'gahgcihwijchwhcwjcnowhw', 1, 1, 'dido-khoirulrijal20240511164052', '.jpg', '::1', NULL, NULL, NULL, NULL, NULL, 1718690689, 1715420452, '2024-06-18 13:04:49'),
+(7, 'siti ', 'siti', '$2y$08$FA/xt1MSvf5YvvqxQqjRiew7UhM06Pw59.ED1sdbM8ZCWgm6AdTAW', 'siti123@gmail.com', '081234567890', NULL, NULL, 'fewfewfw', 2, 1, 'siti20240511164956', '.png', '::1', NULL, NULL, '8fl0UPiFKfQZC.iz5AFvJee7a7119b90a6e53737', 1716780361, NULL, 1717991240, 1715420996, '2024-06-10 10:47:20'),
+(8, 'derza1', 'derza1', '$2y$08$vwOopGqu08brCSlKjs9i8.7FhxU6jXNiRG3UpGkpHl24wt3qS7UA2', 'derza12@gmail.com', '081234567890', 17, 48, 'y8giyhbiuhoij', 3, 1, NULL, NULL, '::1', NULL, NULL, NULL, NULL, NULL, 1718685086, 1715656961, '2024-06-18 11:31:26'),
 (9, 'teguh', 'teguh', '$2y$08$uZjAOIZbvDO0gbJTYSZNL.1rPJ5W4e9Fd2ehnUwbH3IYWE0BqEVnC', 'teguh123@gmail.com', '081234567890', NULL, NULL, 'jhckjckjcsdkjwhvldhvjjndkjjncwkjjnvkjw', 4, 1, NULL, NULL, '::1', NULL, NULL, NULL, NULL, NULL, 1717235143, 1717197542, '2024-06-01 16:45:43');
 
 -- --------------------------------------------------------
@@ -1742,6 +1761,12 @@ ALTER TABLE `subscriber`
   ADD PRIMARY KEY (`id_subscriber`);
 
 --
+-- Indexes for table `tb_gambar`
+--
+ALTER TABLE `tb_gambar`
+  ADD PRIMARY KEY (`id_gambar`);
+
+--
 -- Indexes for table `transaksi`
 --
 ALTER TABLE `transaksi`
@@ -1824,7 +1849,7 @@ ALTER TABLE `kost`
 -- AUTO_INCREMENT for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `page`
@@ -1851,16 +1876,22 @@ ALTER TABLE `subscriber`
   MODIFY `id_subscriber` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tb_gambar`
+--
+ALTER TABLE `tb_gambar`
+  MODIFY `id_gambar` int(9) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_trans` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_trans` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `transaksi_detail`
 --
 ALTER TABLE `transaksi_detail`
-  MODIFY `id_transdet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id_transdet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `users`

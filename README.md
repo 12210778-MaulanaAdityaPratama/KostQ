@@ -1,4 +1,4 @@
-<h1>Sistem Informasi Booking Lapangan Futsal</h1>
+<!-- <h1>Sistem Informasi Booking Lapangan Futsal</h1>
 Project ini dibuat dengan tujuan membantu Anda yang sedang belajar Codeigniter 3 dengan studi kasus pembuatan sistem booking lapangan futsal. Setelah belajar dan memahami project ini Anda dapat membuat project lain atau mengembangkan yang sudah ada supaya lebih baik lagi. Semoga bermanfaat.
 
 <h2>Fitur</h2>
@@ -68,4 +68,4 @@ Anda bisa menginstall xampp/wampp atau LAMPP Stack di pc/komputer/laptop yang di
   <li><a href="https://amperakoding.com/article/cara-install-apache-mysql-dan-php-di-os-linux-lampp">Cara Install Apache, MySQL, dan PHP di OS Linux (LAMPP)</a></li>
   <li><a href="https://www.muhazmi.com/2016/12/cara-install-xampp-yang-baik-dan-benar.html">Cara Install Xampp di OS Linux</a></li>
   <li><a href="https://www.muhazmi.com/2017/08/cara-install-xampp-yang-baik-dan-benar.html">Cara Install Xampp di OS Windows</a></li>
-</ol>
+</ol> -->
